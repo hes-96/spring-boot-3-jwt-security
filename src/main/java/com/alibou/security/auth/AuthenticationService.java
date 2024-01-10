@@ -39,13 +39,13 @@ public class AuthenticationService {
         .password(passwordEncoder.encode(request.getPassword()))
         .role(request.getRole())
         .build();
-    var savedUser = repository.save(user);
+    /*var savedUser = */repository.save(user);
     var jwtToken = jwtService.generateToken(user);
-    var refreshToken = jwtService.generateRefreshToken(user);
-    saveUserToken(savedUser, jwtToken);
+    //var refreshToken = jwtService.generateRefreshToken(user);
+    //saveUserToken(savedUser, jwtToken);
     return AuthenticationResponse.builder()
-        .accessToken(jwtToken)
-            .refreshToken(refreshToken)
+        .token(jwtToken)
+            //.refreshToken(refreshToken)
         .build();
   }
 
@@ -59,12 +59,12 @@ public class AuthenticationService {
     var user = repository.findByEmail(request.getEmail())
         .orElseThrow();
     var jwtToken = jwtService.generateToken(user);
-    var refreshToken = jwtService.generateRefreshToken(user);
-    revokeAllUserTokens(user);
+    /*var refreshToken = jwtService.generateRefreshToken(user);
+    revokeAllUserTokens(user);*/
     saveUserToken(user, jwtToken);
     return AuthenticationResponse.builder()
-        .accessToken(jwtToken)
-            .refreshToken(refreshToken)
+        .token(jwtToken)
+            //.refreshToken(refreshToken)
         .build();
   }
 
@@ -90,7 +90,7 @@ public class AuthenticationService {
     tokenRepository.saveAll(validUserTokens);
   }
 
-  public void refreshToken(
+  /*public void refreshToken(
           HttpServletRequest request,
           HttpServletResponse response
   ) throws IOException {
@@ -116,5 +116,5 @@ public class AuthenticationService {
         new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
       }
     }
-  }
+  }*/
 }

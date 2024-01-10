@@ -35,23 +35,23 @@ public class JwtService {
   }
 
   public String generateToken(UserDetails userDetails) {
-    return generateToken(new HashMap<>(), userDetails);
+    return generateToken(new HashMap<>(), userDetails, 1000 * 60 * 24);
   }
 
-  public String generateToken(
+  /*public String generateToken(
       Map<String, Object> extraClaims,
       UserDetails userDetails
   ) {
-    return buildToken(extraClaims, userDetails, jwtExpiration);
+    return generateToken(extraClaims, userDetails, jwtExpiration);
   }
 
   public String generateRefreshToken(
       UserDetails userDetails
   ) {
     return buildToken(new HashMap<>(), userDetails, refreshExpiration);
-  }
+  }*/
 
-  private String buildToken(
+  private String generateToken(
           Map<String, Object> extraClaims,
           UserDetails userDetails,
           long expiration

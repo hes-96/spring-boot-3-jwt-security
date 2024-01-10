@@ -32,16 +32,16 @@ public class SecurityApplication {
 					.password("password")
 					.role(ADMIN)
 					.build();
-			System.out.println("Admin token: " + service.register(admin).getAccessToken());
+			System.out.println("Admin token: " + service.register(admin).getToken());
 
-			var manager = RegisterRequest.builder()
+			/*var manager = RegisterRequest.builder()
 					.firstname("Admin")
 					.lastname("Admin")
 					.email("manager@mail.com")
 					.password("password")
 					.role(MANAGER)
 					.build();
-			System.out.println("Manager token: " + service.register(manager).getAccessToken());
+			System.out.println("Manager token: " + service.register(manager).getToken());*/
 
 		};
 	}
